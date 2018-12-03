@@ -21,6 +21,7 @@
     "lodash": "^4.17.11",
     "mongodb": "^3.1.10",
     "mongoose": "^5.3.14",
+    "socket.io": "^2.2.0",
     "validator": "^10.9.0"
   },
   "devDependencies": {
