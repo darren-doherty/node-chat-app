@@ -30,7 +30,7 @@ io.on("connection", socket => {
     console.log("Create new message", message);
     // io.emit("newMessage", message);
     socket.broadcast.emit("newMessage", createMessage(message.from, message.text));
-    callback('success');
+    callback !== undefined && callback('success');
   });
 
   socket.on("disconnect", () => {
