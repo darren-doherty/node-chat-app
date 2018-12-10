@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 
 const { authenticate } = require("./middleware/authenticate");
 const { logging } = require("./middleware/logging");
+const { createMessage } = require('./utils/message');
 
 const publicPath = path.join(__dirname, "../public");
 
@@ -21,24 +22,15 @@ var io = socketIO(server);
 io.on("connection", socket => {
   console.log("New user connected");
 
-  socket.emit("newMessage", {
-    from: 'Admin',
-    text: 'Welcome',
-    createdAt: new Date().getTime()
-  });
+  socket.emit("newMessage", createMessage('Admin', 'Welcome'));
 
-  socket.broadcast.emit("newMessage",  {
-    from: 'Admin',
-    text: 'New user joined',
-    createdAt: new Date().getTime()
-  });
+  socket.broadcast.emit("newMessage", createMessage('Admin', 'New user joined')); 
 
-  socket.on("createMessage", message => {
+  socket.on("createMessage", (message, callback) => {
     console.log("Create new message", message);
-
-    message.createdAt = new Date().getTime();
     // io.emit("newMessage", message);
-    socket.broadcast.emit("newMessage", message);
+    socket.broadcast.emit("newMessage", createMessage(message.from, message.text));
+    callback('success');
   });
 
   socket.on("disconnect", () => {
