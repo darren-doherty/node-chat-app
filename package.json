@@ -19,6 +19,7 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
     "lodash": "^4.17.11",
+    "moment": "^2.22.2",
     "mongodb": "^3.1.10",
     "mongoose": "^5.3.14",
     "socket.io": "^2.2.0",
