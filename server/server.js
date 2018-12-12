@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 
 const { authenticate } = require("./middleware/authenticate");
 const { logging } = require("./middleware/logging");
-const { createMessage } = require('./utils/message');
+const { createMessage, createLocationMessage } = require('./utils/message');
 
 const publicPath = path.join(__dirname, "../public");
 
@@ -30,6 +30,13 @@ io.on("connection", socket => {
     console.log("Create new message", message);
     // io.emit("newMessage", message);
     socket.broadcast.emit("newMessage", createMessage(message.from, message.text));
+    callback !== undefined && callback('success');
+  });
+
+  socket.on("createLocationMessage", (coords, callback) => {
+    console.log("Create new location message", coords);
+    // io.emit("newMessage", message);
+    socket.broadcast.emit("newLocationMessage", createLocationMessage('Admin', coords.latitude, coords.longitude));
     callback !== undefined && callback('success');
   });
 
