@@ -12,7 +12,7 @@ describe('createMessage', () => {
     });
 });
 
-describe('createMessage', () => {
+describe('createLocationMessage', () => {
     it('should create a new location message object', () => {
         var from = 'Darren';
         var latitude = 123;
