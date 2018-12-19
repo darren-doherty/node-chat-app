@@ -70,7 +70,6 @@ $('#messageForm').on('submit', function(e) {
   e.preventDefault();
   var messageTextfield = $(this).find("input[name='message']");
   socket.emit('createMessage', {
-    from: 'User',
     text: messageTextfield.val()
   }, function(res) {
     console.log('Response is', res);
