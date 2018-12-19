@@ -1,13 +1,11 @@
 require("./config/config");
 
 const path = require("path");
-const _ = require("lodash");
 const express = require("express");
 const http = require("http");
 const socketIO = require("socket.io");
 const bodyParser = require("body-parser");
 
-const { authenticate } = require("./middleware/authenticate");
 const { logging } = require("./middleware/logging");
 const { createMessage, createLocationMessage } = require("./utils/message");
 const { isRealString } = require("./utils/validation");
